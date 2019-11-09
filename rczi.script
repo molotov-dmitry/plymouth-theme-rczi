@@ -33,13 +33,13 @@ Window.SetBackgroundBottomColor(0.130, 0.246, 0.308);
 
 logo.image_orig = Image("logo.png");
 
-if (logo.image_orig.GetWidth() <= Window.GetWidth() / 10)
+if (logo.image_orig.GetWidth() <= Window.GetWidth() / 2)
 {
 	logo.image = logo.image_orig;
 }
 else
 {
-	scale = Window.GetWidth() / 10 / logo.image_orig.GetWidth();
+	scale = Window.GetWidth() / 2 / logo.image_orig.GetWidth();
 	logo.image = logo.image_orig.Scale(logo.image_orig.GetWidth() * scale, logo.image_orig.GetHeight() * scale);
 }
 
@@ -184,15 +184,27 @@ Plymouth.SetMessageFunction(display_message_callback);
 progress_box.image  = Image("progress_box.png");
 progress_box.sprite = Sprite(progress_box.image);
 
+# Get progress bar y position --------------------------------------------------
+
+progress_bar_y = Window.GetY() + Window.GetHeight() * 0.6 - progress_box.image.GetHeight() / 2;
+progress_bar_h = progress_box.image.GetHeight() * 2;
+
+if (progress_bar_y <= logo.y + logo.height + progress_bar_h)
+{
+    progress_bar_y = logo.y + logo.height + progress_bar_h;
+}
+
+# ------------------------------------------------------------------------------
+
 progress_box.x = Window.GetX() + Window.GetWidth() / 2 - progress_box.image.GetWidth() / 2;
-progress_box.y = Window.GetY() + Window.GetHeight() * 0.6 - progress_box.image.GetHeight() / 2;
+progress_box.y = progress_bar_y;
 progress_box.sprite.SetPosition(progress_box.x, progress_box.y, 0);
 
 progress_bar.original_image = Image("progress_bar.png");
 progress_bar.sprite = Sprite();
 
 progress_bar.x = Window.GetX() + Window.GetWidth() / 2 - progress_bar.original_image.GetWidth() / 2;
-progress_bar.y = Window.GetY() + Window.GetHeight() * 0.6  - progress_box.image.GetHeight() / 2 + (progress_box.image.GetHeight() - progress_bar.original_image.GetHeight()) / 2;
+progress_bar.y = progress_bar_y + (progress_box.image.GetHeight() - progress_bar.original_image.GetHeight()) / 2;
 progress_bar.sprite.SetPosition(progress_bar.x, progress_bar.y, 1);
 
 fun progress_callback(duration, progress)
