@@ -12,6 +12,15 @@ install: $(INSTALL_DIR)/$(TARGET) $(INSTALL_FILES)
 
 uninstall:
 	rm -f $(INSTALL_DIR)/$(TARGET)
+	
+install-alternative:
+	update-alternatives --install $(INSTALL_DIR)/default.plymouth default.plymouth $(INSTALL_DIR)/$(TARGET)/$(TARGET).plymouth 150
+	
+set-alternative:
+	update-alternatives --set default.plymouth $(INSTALL_DIR)/$(TARGET)/$(TARGET).plymouth
+
+remove-alternative:
+	update-alternatives --remove default.plymouth $(INSTALL_DIR)/$(TARGET)/$(TARGET).plymouth
 
 ### Files ======================================================================
 
