@@ -1,0 +1,7 @@
+#set_background_image "images/tile.png";
+
+set menu_color_normal=white/black
+set menu_color_highlight=black/light-gray
+if background_color 33,63,79; then
+  clear
+fi
