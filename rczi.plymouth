@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=RCZI Plymouth
+Description=A RCZI Plymouth theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes//rczi
+ScriptFile=/usr/share/plymouth/themes/rczi/rczi.script
